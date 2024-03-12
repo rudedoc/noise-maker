@@ -1,0 +1,21 @@
+%p{:style => "color: green"}= notice
+%h1 Sounds
+= link_to "New sound", new_sound_path, class: "btn btn-primary"
+%table.table
+  %tbody
+    - @sounds.each do |sound|
+      %tr
+        %td= sound.name
+        %td= sound.created_at
+        %td= sound.updated_at
+        %td
+          %audio{ controls: 'controls' }
+            %source{ src: url_for(sound.audio), type: 'audio/mpeg' }
+            Your browser does not support the audio element.
+            %br/
+        %td
+          = link_to 'Show', sound
+        %td
+          = link_to 'Edit', edit_sound_path(sound)
+        %td
+          = link_to 'Destroy', sound, method: :delete, data: { confirm: 'Are you sure?' }

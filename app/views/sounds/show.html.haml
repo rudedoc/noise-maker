@@ -1,0 +1,12 @@
+%p{:style => "color: green"}= notice
+= render @sound
+%div
+  // audio context to play the sound
+  %audio{:controls => "controls"}
+    %source{:src => url_for(@sound.audio), :type => "audio/mpeg"}
+    Your browser does not support the audio element.
+  %br/
+  %br/
+  = link_to "Back to sounds", sounds_path, class: "btn btn-primary"
+  = link_to "Edit this sound", edit_sound_path(@sound), class: "btn btn-primary"
+  = link_to "Destroy this sound", @sound, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' }
